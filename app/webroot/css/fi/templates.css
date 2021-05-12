@@ -1,0 +1,43 @@
+
+
+div.modal-dialog{
+	margin-top: 50px;
+}
+div.modal-content{
+	border-radius: 0px;
+}
+.templates-container{
+	padding: 20px;
+}
+.close-btn{
+	letter-spacing: normal;
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: lowercase;
+}
+.row.template-row{
+	padding: 0px;
+}
+.panel.template-panel{
+	margin-bottom: 0;
+}
+.modal-dialog .modal-content{
+	border-radius: 10px;
+}
+@media(min-width: 768px){
+	.compose-message-dialog{
+		padding-left: 0;
+	}
+}
+.message-status{
+	float: right; 
+	font-size: .9em;
+}
+.message-status.message-status-success{
+	color: #00be00;
+	font-weight: bold;
+}
+.message-status.message-status-error{
+	color: #f60000;
+	font-weight: bold;
+}

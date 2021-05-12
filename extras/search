@@ -1,0 +1,43 @@
+<?php echo $this->element('search'); ?>
+<!-- <div class="row search-row">
+	<div class=" col-xs-12 col-sm-8 col-sm-push-2  col-md-4 col-md-push-4 login-col">
+		<h1 style="text-align: center; font-size: 24px; font-family: sans;"><?php echo $appName; ?><small><sup>&reg;</sup></small></h1>
+	</div>
+</div> -->
+<div class="row search-results-row">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+		<div class="search-results-head rounded-and-shadowed">
+			<div class="page-header search-results-page-header">
+				<h1><?php echo $appName; ?> search results</h1>
+				<hr class="no-padding-margin admin-hr"/>
+			</div>
+			<?php if(count($products) == 0): ?>
+				<div class="p text-center">
+					<h3 style="font-weight: normal; font-size: 15px;">sorry but nothing was found...</h3>
+					<ul style="margin-bottom: 0px; font-size: 14px; list-style-type: none;">
+						<li>make sure the spellings are right</li>
+						<li>try <?php echo $this->Html->link('browsing', array('controller' => 'pages', 'action' => 'categorylist')); ?> through the available products</li>
+						<li>use the <?php echo $this->Html->link('advanced search tool', array('controller' => 'products', 'action' => 'advancedsearch')); ?> with varied parameters</li>
+					</ul>
+				</div>
+			<?php else: ?>
+				<div>
+					<h4 style="width: 100%;">found <?php echo $this->Paginator->counter(array('format' => '{:count}'));?> result(s) <span style="float: right;">page <?php echo $this->Paginator->counter(array('format' => '{:page}'))?> of <?php echo $this->Paginator->counter(array('format' => '{:pages}'))?></span> </h4>
+				</div>
+			<?php endif;?>
+		</div>
+		<?php foreach($products as $product): ?>
+			<?php echo $this->element('basic_card', array('product' => $product, 'highlight' => $resultsFor));?>
+		<?php endforeach;?>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+		<?php if($this->Paginator->hasNext('Product') || $this->Paginator->hasPrev('Product')): ?>
+			<?php echo $this->element('pagination'); ?>
+		<?php endif;?>
+		<?php if($this->Paginator->hasNext() || $this->Paginator->hasPrev()): ?>
+			<?php echo $this->element('basic_pagination'); ?>
+		<?php endif;?>
+	</div>
+</div>

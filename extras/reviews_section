@@ -1,0 +1,29 @@
+<div class="row rounded-and-shadowed"  style="background: white; padding: 10px; margin-top: 10px;" ng-controller="ReviewsController" id="product-reviews">
+			<h1 style="width: 100%;"class="product-page-title comments-title">comments (<?php echo count($reviews); ?>) <span class="small" style="float: right; line-height: 18px; text-transform: lowercase;"> <?php if(!$loggedIn): ?> <?php echo $this->Html->link('login required', array('controller' => 'users', 'action' => 'login'))?><?php endif;?></span></h1>
+			<div class="col-xs-12" style="padding-left: 0px;">
+				<hr class="no-padding-margin product-page-hr"/>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 product-reiviews-col pp-col">
+				<?php foreach($reviews as $review): ?>
+					<div class="review">
+						<h3 style="font-size: 13px; font-weight: bold; color: #656D78;"><?php echo $review['User']['display_name']; ?> - <span style="font-size: 12px; text-transform: lowercase;"data-livestamp="<?php echo $this->Time->toUnix($review['Review']['created']); ?>"></span></h3>
+						<p class="review-body p" style="padding-left: 10px;">
+							- <?php echo h($review['Review']['review']); ?>
+						</p>
+						<hr class="no-padding-margin product-page-hr"/>
+					</div>
+				<?php endforeach;?>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 reviews-form-col pp-col">
+				<?php echo $this->Form->create('Review', array('url' => array('controller' => 'reviews', 'action' => 'add'), 'inputDefaults' => array('div' => 'form-group'), 'novalidate' => true, 'name' => 'reviewForm')); ?>
+				<?php echo $this->Form->input('Review.review', array('class' => 'form-control', 'label' => '', 'ng-model' => 'review', 'required' => true, 'rows' => 3, 'div' => array('style' => 'margin-bottom: 5px;'))); ?>
+				<?php //echo $this->Form->input('Review.user_id', array('type' => 'hidden', 'value' => ($user['id'] ? $user['id'] : ''))); ?>
+				<?php echo $this->Form->input('Review.product_id', array('type' => 'hidden', 'value' => $product['Product']['id'])); ?>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<?php echo $this->Form->end(array('label' => 'post comment', 'class' => 'btn btn-info btn-sm', 'ng-disable' => 'reviewForm.$invalid', 'style' => 'display: inline-block;'));?> 
+					</div>
+				</div>
+			</div>
+			<!-- end of commecting row -->
+		</div>

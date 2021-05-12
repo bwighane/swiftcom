@@ -1,0 +1,26 @@
+<div class="row" b-resize>
+    <div class="col-xs-12 col-md-3">
+    	<h3>categories</h3>
+        <div class="list-group"> 
+        	<?php foreach($categories as $category):?>
+        		<?php echo $this->Html->link($category['Category']['name'], array('controller' => 'posts', 'action' => 'category', $category['Category']['id']), array('class' => 'list-group-item')); ?>
+        	<?php endforeach;?>
+        </div>
+        <h3>more options</h3>
+        <ul>
+            <li>my favourites</li>
+            <li>most viewed</li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <?php echo $this->element('search'); ?>
+    	<div class="row" data-perfect-grid="2-3-4">
+    		<?php foreach($products as $product): ?>
+    			<?php echo $this->element('card', array('product' => $product)); ?>
+    		<?php endforeach;?>
+    	</div>
+    </div>
+</div>
+
+
+
